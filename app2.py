@@ -70,15 +70,22 @@ if not df.empty:
     colC.metric("🔺 Máx", f"{max_val}")
     colD.metric("🔻 Mín", f"{min_val}")
 
+ 
     st.subheader("Distribución de estaturas")
-    intervalos = np.arange(100, 250, 5)
+
+    # --- Slider para elegir el tamaño del intervalo ---
+    paso = st.slider("Tamaño del intervalo (cm)", min_value=1, max_value=10, value=5)
+
+    # --- Construcción de intervalos y frecuencias ---
+    intervalos = np.arange(100, 250, paso)
     freq, bins = np.histogram(df["Estatura"], bins=intervalos)
 
     mu, sigma = df["Estatura"].mean(), df["Estatura"].std()
-    distrib = norm.pdf(intervalos[:-1], mu, sigma) * 5
+    distrib = norm.pdf(intervalos[:-1], mu, sigma) * paso  # ajusta según el paso
 
+    # --- Gráfico ---
     fig, ax1 = plt.subplots(figsize=(10,5))
-    ax1.bar(intervalos[:-1], freq, width=4, color="skyblue", alpha=0.6, label="Frecuencia")
+    ax1.bar(intervalos[:-1], freq, width=paso, color="skyblue", alpha=0.6, label="Frecuencia")
     ax1.set_ylabel("Frecuencia", color="blue")
     ax1.set_xlabel("Intervalos (cm)")
 
