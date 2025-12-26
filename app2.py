@@ -53,9 +53,6 @@ if sheet:
 else:
     df = pd.DataFrame(columns=["Nombre", "Estatura"])
 
-# --- Mostrar tabla ---
-st.subheader("Datos enviados por todos los estudiantes")
-st.dataframe(df)
 
 # --- Estadísticas y gráfico ---
 if not df.empty:
@@ -99,3 +96,7 @@ if not df.empty:
     ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left")
 
     st.pyplot(fig)
+
+# --- Mostrar tabla ---
+st.subheader("Datos enviados por todos los estudiantes")
+st.dataframe(df)
