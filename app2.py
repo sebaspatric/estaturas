@@ -10,7 +10,7 @@ st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 st.title("Ingreso de estaturas en clase 📊")
 
 # --- Conexión a Google Sheets ---
-scope = ["https://spreadsheets.google.com/feeds",
+scope = ["https://www.googleapis.com/auth/spreadsheets",
          "https://www.googleapis.com/auth/drive"]
 
 sheet = None
